@@ -3,9 +3,9 @@ def wedding(N, people):
     if people:
         tribes = [set()]
         for first, second in people:
-            o = 0
+            tribe_is_exist = 0
             for tribe in tribes:
-                o = 0
+                tribe_is_exist = 0
                 if not tribe:
                     tribe.add(first)
                     tribe.add(second)
@@ -14,10 +14,10 @@ def wedding(N, people):
                 elif second in tribe:
                     tribe.add(first)
                 else:
-                    o = 1
-                if not o:
+                    tribe_is_exist = 1
+                if not tribe_is_exist:
                     break
-            if o:
+            if tribe_is_exist:
                 tribes.append({first, second})
         result = find_pairs(tribes)
     else:
@@ -41,17 +41,28 @@ def find_pairs(tribes):
 
     return sum(boys) * sum(girls) - sum((b * g for b, g in zip(boys, girls)))
 
+def new_zip(a, b):
+    my_list = []
+    for x in range(min(len(a), len(b))):
+        for z in range(min(len(a), len(b))):
+            w = {a[x], b[x]}
+            my_list.append(w)
+            break
+    return my_list
+
+
 print('Example 1:')
-print(wedding(3, ((1, 2), (2, 4), (3, 5))), '\n')
+print(wedding(3, ((1, 2), (7, 4), (3, 5))), '\n')
 print('Example 2:')
 print(wedding(5, ((1, 2), (2, 4), (1, 3), (3, 5), (8, 10))), '\n')
 print('My example:')
 print(wedding(4, ((1, 2), (2, 4), (3, 5), (8, 10))), '\n')
 print('My example 2 :')
-print(wedding(0,()))
+print(wedding(0, ()))
 
 in_N = int(input())
 in_people = [tuple(map(int, input().split(' '))) for u in range(in_N)]
-print(wedding(in_N, in_people))
+print(wedding(in_N, in_people, ))
 if __name__ == 'main':
     print(wedding())
+    template_list = [(1, 2), (2, 4), (3, 5), (2, 3), (2, 15), (10, 8), (15, 20)]
