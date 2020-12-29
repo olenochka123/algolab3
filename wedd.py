@@ -39,7 +39,7 @@ def find_pairs(tribes):
         boys.append(len(boys_in_tribe))
         girls.append(len(girls_in_tribe))
 
-    return sum(boys) * sum(girls) - sum((b * g for b, g in zip(boys, girls)))
+    return sum(boys) * sum(girls) - sum((b * g for b, g in new_zip(boys, girls)))
 
 def new_zip(a, b):
     my_list = []
